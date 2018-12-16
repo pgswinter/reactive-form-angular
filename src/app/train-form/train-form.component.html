@@ -1,0 +1,50 @@
+<form [formGroup]="sampleForm" (ngSubmit)="onSubmit()" >
+  <label>
+    Email
+    <input type="text" formControlName="email"> 
+  </label>
+  <label>
+    Username
+    <input type="text" formControlName="username"> 
+  </label>
+  <div formGroupName="profile_picture">
+    <label>
+      Url
+      <input type="text" formControlName="url"> 
+    </label>
+  </div>
+  <label>
+    Front editor name
+    <input type="text" formControlName="front_editor_name"> 
+  </label>
+  <label>
+    Group
+    <input type="text" formControlName="group"> 
+  </label>
+  <label>
+    Operational
+    <input type="text" formControlName="operational"> 
+  </label>
+  <label>
+    Created at
+    <input type="text" formControlName="created_at"> 
+  </label>
+  <div formArrayName="roles"
+    *ngFor="let item of sampleForm.get('roles').controls; let i =index"
+  >
+    <div [formGroupName]="i">
+      <input formControlName="role_name" placeholder="Role name">
+      <input formControlName="order" placeholder="Order">
+    </div>
+    Chosen name: {{sampleForm.controls.roles.controls[i].controls.name}}
+  </div>
+  <!-- the form has been touched and also if the form is invalid -->
+  <button #button (ngSubmit)="button.disabled = true" type="submit" [disabled]="sampleForm.invalid || sampleForm.prestine">Add number</button>
+  <!-- <button (click)="onSubmitUpdate()"  [disabled]="sampleForm.invalid || sampleForm.prestine">Submit</button> -->
+</form>
+<p>
+  Form Status: {{sampleForm.status}}
+</p>
+<p>
+  <button (click)="addItem()">Add item</button>
+</p>

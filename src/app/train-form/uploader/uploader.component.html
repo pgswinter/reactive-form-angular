@@ -1,0 +1,9 @@
+<form [formGroup]="uploadForm" enctype="multipart/form-data" method="post">
+  <div>
+    <label for="picked">Choose file to upload</label>
+    <div>
+      <input type="file" id="picked" #picked
+        (change)="onPicked(picked)">
+    </div>
+  </div>
+</form>
